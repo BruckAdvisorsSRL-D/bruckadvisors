@@ -418,6 +418,7 @@
 
                 handlePopState(e) {
                     const pageId = (e.state && e.state.page) ? e.state.page : 'home';
+                    this.currentPage = pageId;
                     this.showPage(pageId);
                 },
                 
