@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Netlify Form</title>
+</head>
+<body>
+    <!-- 
+      This form is not intended for users.
+      It's a duplicate of the main contact form, created so that Netlify's
+      build bots can detect it during deployment and enable form submissions
+      for the main JavaScript-powered application.
+    -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+            <label>
+                Don’t fill this out if you’re human: <input name="bot-field" />
+            </label>
+        </p>
+        <input type="text" name="first-name" />
+        <input type="text" name="last-name" />
+        <input type="email" name="email" />
+        <textarea name="message"></textarea>
+    </form>
+</body>
+</html>
