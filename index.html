@@ -253,7 +253,8 @@
                         </div>
                         <div class="contact-form-container mt-16 max-w-4xl mx-auto md:flex md:space-x-12">
                             <div class="md:w-2/3 mb-12 md:mb-0">
-                                <form class="contact-form" action="https://formspree.io/f/xrbkevqy" method="POST">
+                                <form class="contact-form" name="contact" method="POST" netlify>
+                                    <input type="hidden" name="form-name" value="contact" />
                                     <div class="space-y-6">
                                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                             <div><label for="first-name" class="block text-sm font-medium text-green-200" data-key="formFirstName"></label><input type="text" name="first-name" id="first-name" class="form-input mt-1 block w-full rounded-md py-2 px-3 text-white transition" required></div>
@@ -552,19 +553,28 @@
                 async handleFormSubmit(e) {
                     e.preventDefault();
                     const form = e.target;
-                    const data = new FormData(form);
+                    const formData = new FormData(form);
                     const button = form.querySelector('.submit-button');
+                    
                     button.disabled = true;
                     button.textContent = this.currentLang === 'ro' ? 'Se trimite...' : 'Sending...';
+
                     try {
-                        const response = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' }});
+                        const response = await fetch('/', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            body: new URLSearchParams(formData).toString()
+                        });
+
                         if (response.ok) {
                             const container = form.closest('.contact-form-container');
                             const thankYouMessage = this.currentLang === 'ro'
                                 ? `<h3 class="text-3xl text-white font-bold mb-4">Vă mulțumim!</h3><p class="text-green-200 text-lg">Solicitarea dumneavoastră a fost trimisă cu succes. Vă vom contacta în curând.</p>`
                                 : `<h3 class="text-3xl text-white font-bold mb-4">Thank You!</h3><p class="text-green-200 text-lg">Your inquiry has been sent successfully. We will get back to you shortly.</p>`;
                             container.innerHTML = `<div class="text-center w-full bg-white/10 p-12 rounded-lg">${thankYouMessage}</div>`;
-                        } else { throw new Error('Network response was not ok.'); }
+                        } else {
+                            throw new Error('Network response was not ok.');
+                        }
                     } catch (error) {
                         button.disabled = false;
                         button.textContent = this.currentLang === 'ro' ? 'Ceva nu a funcționat. Încercați din nou.' : 'Something went wrong. Try again.';
@@ -577,12 +587,4 @@
         });
     </script>
 </body>
-</html>
-```
-
-I've made two changes for you:
-
-1.  **CSS:** I added new styles that apply a 0.2-second opacity transition to all text elements that change with the language.
-2.  **JavaScript:** I updated the `switchLanguage` function. It now fades the text out, changes the content, and then fades the new text in. The language buttons (EN/RO) still change instantly to give immediate feedback.
-
-The preview has been updated with these changes. Try switching languages to see the new, smoother transition in acti
+</ht
