@@ -393,7 +393,8 @@
                 init() {
                     this.cacheDOMElements();
                     this.bindEvents();
-                    this.switchLanguage(this.currentLang);
+                    // Pass true for initial load to prevent transition
+                    this.switchLanguage(this.currentLang, true); 
                     const initialPage = window.location.hash.substring(1) || 'home';
                     this.navigateTo(initialPage, true);
                     this.initObserver();
@@ -411,7 +412,8 @@
                 },
 
                 bindEvents() {
-                    this.langSwitchers.forEach(button => button.addEventListener('click', () => this.switchLanguage(button.dataset.langSwitch)));
+                    // Pass false for user-initiated switches to enable transition
+                    this.langSwitchers.forEach(button => button.addEventListener('click', () => this.switchLanguage(button.dataset.langSwitch, false))); 
                     document.querySelectorAll('a[data-page]').forEach(link => link.addEventListener('click', (e) => {
                         if (link.dataset.page) { e.preventDefault(); this.navigateTo(link.dataset.page); }
                     }));
@@ -449,23 +451,17 @@
                     this.currentService = null; // Clear the current service
                 },
 
-                switchLanguage(lang) {
-                    if (this.currentLang === lang) return;
+                switchLanguage(lang, isInitialLoad = false) {
+                    if (this.currentLang === lang && !isInitialLoad) return;
 
-                    // Update language switcher button styles immediately for instant feedback
+                     // Update language switcher button styles immediately for instant feedback
                     this.langSwitchers.forEach(sw => {
                         sw.classList.toggle('opacity-100', sw.dataset.langSwitch === lang);
                         sw.classList.toggle('font-bold', sw.dataset.langSwitch === lang);
                         sw.classList.toggle('opacity-50', sw.dataset.langSwitch !== lang);
                     });
 
-                    const elementsToTranslate = document.querySelectorAll('[data-key]');
-                    
-                    // Fade out elements
-                    elementsToTranslate.forEach(el => el.classList.add('is-translating'));
-                    
-                    // After a delay, update the content and fade back in
-                    setTimeout(() => {
+                    const updateContent = () => {
                         this.currentLang = lang;
                         document.documentElement.lang = lang;
 
@@ -480,10 +476,19 @@
                         }
                         
                         this.updateActiveLink(this.currentPage);
+                    };
+
+                    if (isInitialLoad) {
+                        updateContent();
+                    } else {
+                        const elementsToTranslate = document.querySelectorAll('[data-key]');
+                        elementsToTranslate.forEach(el => el.classList.add('is-translating'));
                         
-                        // Fade in the new content
-                        elementsToTranslate.forEach(el => el.classList.remove('is-translating'));
-                    }, 200);
+                        setTimeout(() => {
+                            updateContent();
+                            elementsToTranslate.forEach(el => el.classList.remove('is-translating'));
+                        }, 200);
+                    }
                 },
 
                 navigateTo(pageId, isInitialLoad = false) {
