@@ -65,6 +65,14 @@
             transition: opacity 0.4s ease-in-out;
         }
 
+        /* Language transition styles */
+        [data-key] {
+            transition: opacity 0.2s ease-in-out;
+        }
+        .is-translating {
+            opacity: 0;
+        }
+
         /* Expertise details panel styles */
         #expertise-details-container {
             transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out, padding 0.7s ease-in-out;
@@ -314,7 +322,7 @@
             const app = {
                 currentLang: 'en',
                 currentPage: 'home',
-                currentService: null, // <-- Add this to track the open service
+                currentService: null, // Track the open service
 
                 serviceDetails: {
                     en: {
@@ -424,7 +432,7 @@
                 
                 handleServiceButtonClick(e) {
                     const service = e.target.dataset.service;
-                    this.currentService = service; // <-- Set the current service
+                    this.currentService = service; // Set the current service
                     this.renderExpertiseDetails();
                     this.expertiseContainer.classList.add('visible');
                     this.expertiseContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -438,29 +446,44 @@
 
                 closeExpertiseDetails() {
                     this.expertiseContainer.classList.remove('visible');
-                    this.currentService = null; // <-- Clear the current service
+                    this.currentService = null; // Clear the current service
                 },
 
                 switchLanguage(lang) {
-                    this.currentLang = lang;
-                    document.documentElement.lang = lang;
-                    Object.keys(this.content[lang]).forEach(key => {
-                        document.querySelectorAll(`[data-key="${key}"]`).forEach(el => { el.innerHTML = this.content[lang][key]; });
-                    });
-                    
-                    // <-- START of new logic
-                    // If a service detail panel is open, re-render its content with the new language
-                    if (this.expertiseContainer.classList.contains('visible')) {
-                        this.renderExpertiseDetails();
-                    }
-                    // <-- END of new logic
+                    if (this.currentLang === lang) return;
 
+                    // Update language switcher button styles immediately for instant feedback
                     this.langSwitchers.forEach(sw => {
                         sw.classList.toggle('opacity-100', sw.dataset.langSwitch === lang);
                         sw.classList.toggle('font-bold', sw.dataset.langSwitch === lang);
                         sw.classList.toggle('opacity-50', sw.dataset.langSwitch !== lang);
                     });
-                    this.updateActiveLink(this.currentPage);
+
+                    const elementsToTranslate = document.querySelectorAll('[data-key]');
+                    
+                    // Fade out elements
+                    elementsToTranslate.forEach(el => el.classList.add('is-translating'));
+                    
+                    // After a delay, update the content and fade back in
+                    setTimeout(() => {
+                        this.currentLang = lang;
+                        document.documentElement.lang = lang;
+
+                        Object.keys(this.content[lang]).forEach(key => {
+                            document.querySelectorAll(`[data-key="${key}"]`).forEach(el => {
+                                el.innerHTML = this.content[lang][key];
+                            });
+                        });
+
+                        if (this.expertiseContainer.classList.contains('visible')) {
+                            this.renderExpertiseDetails();
+                        }
+                        
+                        this.updateActiveLink(this.currentPage);
+                        
+                        // Fade in the new content
+                        elementsToTranslate.forEach(el => el.classList.remove('is-translating'));
+                    }, 200);
                 },
 
                 navigateTo(pageId, isInitialLoad = false) {
@@ -550,3 +573,11 @@
     </script>
 </body>
 </html>
+```
+
+I've made two changes for you:
+
+1.  **CSS:** I added new styles that apply a 0.2-second opacity transition to all text elements that change with the language.
+2.  **JavaScript:** I updated the `switchLanguage` function. It now fades the text out, changes the content, and then fades the new text in. The language buttons (EN/RO) still change instantly to give immediate feedback.
+
+The preview has been updated with these changes. Try switching languages to see the new, smoother transition in acti
