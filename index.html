@@ -314,6 +314,7 @@
             const app = {
                 currentLang: 'en',
                 currentPage: 'home',
+                activeService: null,
                 
                 content: {
                     en: {
@@ -424,14 +425,20 @@
                 
                 handleServiceButtonClick(e) {
                     const service = e.target.dataset.service;
-                    const details = this.serviceDetailsData[this.currentLang][service];
-                    this.expertiseContent.innerHTML = `<div class="py-6 flex justify-between items-center"><h3 class="text-3xl text-white font-bold">${details.title}</h3><button class="close-expertise-button text-green-200 hover:text-white text-4xl leading-none">&times;</button></div>${details.content}`;
+                    this.activeService = service;
+                    this.renderServiceDetails(service);
                     this.expertiseContainer.classList.add('visible');
                     this.expertiseContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 },
+                renderServiceDetails(service) {
+                    const details = this.serviceDetailsData[this.currentLang][service];
+                    this.expertiseContent.innerHTML = `<div class="py-6 flex justify-between items-center"><h3 class="text-3xl text-white font-bold">${details.title}</h3><button class="close-expertise-button text-green-200 hover:text-white text-4xl leading-none">&times;</button></div>${details.content}`;
+                },
+
 
                 closeExpertiseDetails() {
                     this.expertiseContainer.classList.remove('visible');
+                    this.activeService = null;
                 },
 
                 switchLanguage(lang) {
@@ -452,6 +459,9 @@
                             sw.classList.toggle('font-bold', sw.dataset.langSwitch === lang);
                             sw.classList.toggle('opacity-50', sw.dataset.langSwitch !== lang);
                         });
+                        if (this.expertiseContainer.classList.contains("visible") && this.activeService) {
+                            this.renderServiceDetails(this.activeService);
+                        }
                         this.updateActiveLink(this.currentPage);
 
                         Array.from(document.querySelectorAll('[data-key]')).forEach(el => {
