@@ -77,10 +77,13 @@
             padding-bottom: 0;
         }
         #expertise-details-container.visible {
-            max-height: 1500px; 
+            max-height: 1500px;
             opacity: 1;
             padding-top: 4rem;
             padding-bottom: 4rem;
+        }
+        #expertise-details-content {
+            transition: opacity 0.3s ease-in-out;
         }
         .legal-content h1 { font-size: 2.25rem; font-weight: bold; margin-bottom: 1.5rem; }
         .legal-content h2, .legal-content h3 { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; }
@@ -314,6 +317,7 @@
             const app = {
                 currentLang: 'en',
                 currentPage: 'home',
+                currentService: null,
                 
                 content: {
                     en: {
@@ -421,11 +425,20 @@
                     this.currentPage = pageId;
                     this.showPage(pageId);
                 },
-                
+
+                renderServiceDetails(service) {
+                    this.currentService = service;
+                    const details = this.serviceDetailsData[this.currentLang][service];
+                    this.expertiseContent.style.opacity = 0;
+                    setTimeout(() => {
+                        this.expertiseContent.innerHTML = `<div class="py-6 flex justify-between items-center"><h3 class="text-3xl text-white font-bold">${details.title}</h3><button class="close-expertise-button text-green-200 hover:text-white text-4xl leading-none">&times;</button></div>${details.content}`;
+                        this.expertiseContent.style.opacity = 1;
+                    }, 150);
+                },
+
                 handleServiceButtonClick(e) {
                     const service = e.target.dataset.service;
-                    const details = this.serviceDetailsData[this.currentLang][service];
-                    this.expertiseContent.innerHTML = `<div class="py-6 flex justify-between items-center"><h3 class="text-3xl text-white font-bold">${details.title}</h3><button class="close-expertise-button text-green-200 hover:text-white text-4xl leading-none">&times;</button></div>${details.content}`;
+                    this.renderServiceDetails(service);
                     this.expertiseContainer.classList.add('visible');
                     this.expertiseContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 },
@@ -458,6 +471,10 @@
                             el.style.transition = 'opacity 0.4s ease-in-out';
                             el.style.opacity = 1;
                         });
+
+                        if (this.expertiseContainer.classList.contains('visible') && this.currentService) {
+                            this.renderServiceDetails(this.currentService);
+                        }
                     });
                 },
 
