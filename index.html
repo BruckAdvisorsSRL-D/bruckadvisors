@@ -10,6 +10,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMBKQTRDZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      // Set default consent to 'denied'. This will be updated based on user choice.
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied'
+      });
+
+      gtag('js', new Date());
+      gtag('config', 'G-BMBKQTRDZV');
+    </script>
     
     <style>
         /* Base styles */
@@ -560,15 +575,14 @@
                 },
 
                 applyConsent(consent) {
-                     console.log("Applying consent:", consent);
-                    if (consent.analytics) {
-                        console.log("Analytics cookies are enabled. Initializing analytics scripts...");
-                        // Placeholder for your analytics script, e.g., Google Analytics
-                        // gtag('consent', 'update', { 'analytics_storage': 'granted' });
+                    const consentStatus = consent.analytics ? 'granted' : 'denied';
+                    if (typeof gtag === 'function') {
+                        gtag('consent', 'update', {
+                            'analytics_storage': consentStatus
+                        });
+                        console.log(`Analytics consent updated to: ${consentStatus}`);
                     } else {
-                        console.log("Analytics cookies are disabled.");
-                        // Placeholder to disable analytics
-                        // gtag('consent', 'update', { 'analytics_storage': 'denied' });
+                        console.warn('gtag function not found. Analytics consent not applied.');
                     }
                 },
 
