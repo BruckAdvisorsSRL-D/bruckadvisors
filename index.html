@@ -130,6 +130,73 @@
         .custom-checkbox {
             accent-color: #14B8A6;
         }
+        
+       /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: rgba(255, 255, 255, 0.1);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container.left {
+            left: 0;
+        }
+        .timeline-container.right {
+            left: 50%;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #14B8A6;
+            border: 4px solid #f0fdf4;
+            top: 28px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-container.right::after {
+            left: -10px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.05);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 20px;
+            }
+            .timeline-container {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
+            }
+            .timeline-container.left, .timeline-container.right {
+                left: 0%;
+            }
+            .timeline-container.right::after, .timeline-container.left::after {
+                left: -10px;
+            }
+        }
 
     </style>
 </head>
@@ -222,13 +289,30 @@
                     </div>
                 </section>
                 <section class="py-20 border-t border-white/10 fade-in-section">
-                    <div class="container mx-auto px-6">
-                        <div class="md:flex md:items-center md:space-x-12">
-                            <div class="md:w-1/3 mb-8 md:mb-0"><img src="https://placehold.co/400x400/f0fdf4/0B3910?text=Bruck+Advisors" alt="Bruck Advisors Brand Image" class="rounded-full mx-auto shadow-xl"></div>
-                            <div class="md:w-2/3">
-                                <h2 class="text-4xl text-white font-bold mb-4" data-key="aboutSnippetTitle"></h2>
-                                <p class="text-green-200 text-lg mb-6" data-key="aboutSnippetDesc"></p>
-                                <a href="#about" data-page="about" class="nav-link-cta inline-block bg-green-200 text-black px-6 py-2 rounded-full font-semibold hover:bg-white transition-colors" data-key="readOurStory"></a>
+                    <div class="container mx-auto px-6 text-center">
+                        <h2 class="text-4xl text-white font-bold mb-4" data-key="valuePropTitle"></h2>
+                        <p class="text-2xl text-green-100 max-w-4xl mx-auto italic" data-key="valuePropHeadline"></p>
+                        
+                        <div class="mt-12 text-left max-w-4xl mx-auto bg-black/10 p-8 rounded-lg">
+                             <h3 class="text-2xl text-white font-bold mb-4" data-key="valuePropHowTitle"></h3>
+                             <p class="text-green-200 text-lg" data-key="valuePropHowDesc"></p>
+                        </div>
+
+                        <div class="mt-12">
+                            <h3 class="text-2xl text-white font-bold mb-8" data-key="valuePropBenefitsTitle"></h3>
+                            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                                <div class="border border-white/10 p-6 rounded-lg">
+                                    <h4 class="text-xl font-bold text-white mb-3" data-key="valuePropBenefit1Title"></h4>
+                                    <p class="text-green-200" data-key="valuePropBenefit1Desc"></p>
+                                </div>
+                                <div class="border border-white/10 p-6 rounded-lg">
+                                    <h4 class="text-xl font-bold text-white mb-3" data-key="valuePropBenefit2Title"></h4>
+                                    <p class="text-green-200" data-key="valuePropBenefit2Desc"></p>
+                                </div>
+                                <div class="border border-white/10 p-6 rounded-lg">
+                                    <h4 class="text-xl font-bold text-white mb-3" data-key="valuePropBenefit3Title"></h4>
+                                    <p class="text-green-200" data-key="valuePropBenefit3Desc"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -236,25 +320,49 @@
             </div>
 
             <div id="about" class="page-section hidden" style="opacity: 0;">
-                 <section class="pt-32 pb-20">
+                 <section class="pt-32 pb-12">
                     <div class="container mx-auto px-6 text-center">
                         <h1 class="text-5xl md:text-7xl text-white font-bold leading-tight mb-4" data-key="aboutTitle"></h1>
                         <p class="text-lg md:text-xl text-green-200 max-w-3xl mx-auto" data-key="aboutSubtitle"></p>
                     </div>
                 </section>
-                <section class="py-20 bg-black/10">
+                <section class="py-12">
                     <div class="container mx-auto px-6">
-                        <div class="md:flex md:items-center md:space-x-12">
-                            <div class="md:w-1/3 mb-8 md:mb-0"><img src="https://placehold.co/400x400/f0fdf4/0B3910?text=Bruck+Advisors" alt="Bruck Advisors Brand Image" class="rounded-lg mx-auto shadow-2xl"></div>
-                            <div class="md:w-2/3">
-                                <h2 class="text-4xl text-white font-bold mb-6" data-key="founderJourneyTitle"></h2>
-                                <div class="space-y-6 text-green-200 text-lg" data-key="founderJourneyDesc"></div>
+                        <div class="timeline">
+                            <div class="timeline-container left fade-in-section">
+                                <div class="timeline-content">
+                                    <h3 class="text-2xl font-bold text-white mb-2" data-key="timeline1Title"></h3>
+                                    <p class="text-green-200" data-key="timeline1Desc"></p>
+                                </div>
+                            </div>
+                            <div class="timeline-container right fade-in-section">
+                                <div class="timeline-content">
+                                    <h3 class="text-2xl font-bold text-white mb-2" data-key="timeline2Title"></h3>
+                                    <p class="text-green-200" data-key="timeline2Desc"></p>
+                                </div>
+                            </div>
+                            <div class="timeline-container left fade-in-section">
+                                <div class="timeline-content">
+                                    <h3 class="text-2xl font-bold text-white mb-2" data-key="timeline3Title"></h3>
+                                    <p class="text-green-200" data-key="timeline3Desc"></p>
+                                </div>
+                            </div>
+                            <div class="timeline-container right fade-in-section">
+                                <div class="timeline-content">
+                                    <h3 class="text-2xl font-bold text-white mb-2" data-key="timeline4Title"></h3>
+                                    <p class="text-green-200" data-key="timeline4Desc"></p>
+                                </div>
+                            </div>
+                             <div class="timeline-container left fade-in-section">
+                                <div class="timeline-content">
+                                    <h3 class="text-2xl font-bold text-white mb-2" data-key="timeline5Title"></h3>
+                                    <p class="text-green-200" data-key="timeline5Desc"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="py-20"><div class="container mx-auto px-6 text-center"><h2 class="text-4xl text-white font-bold mb-4" data-key="visionTitle"></h2><p class="text-lg md:text-xl text-green-200 max-w-3xl mx-auto" data-key="visionDesc"></p></div></section>
-                <section class="py-20 bg-black/10">
+                <section class="py-20">
                     <div class="container mx-auto px-6 text-center">
                         <h2 class="text-4xl text-white font-bold mb-4" data-key="ctaTitle"></h2>
                         <p class="text-lg text-green-200 mb-8" data-key="ctaSubtitle"></p>
@@ -293,11 +401,13 @@
                         <!-- Hotel Services Section -->
                         <div class="mb-24">
                             <h2 id="hotel-services" class="text-4xl font-bold text-white text-center mb-12" data-key="servicesHotelTitle"></h2>
-                            <div class="grid md:grid-cols-2 gap-8">
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 <div class="interactive-card bg-white/5 p-8 rounded-lg shadow-lg"><h4 class="text-2xl text-white font-bold mb-3" data-key="hotelSvc1Title"></h4><p class="text-green-200" data-key="hotelSvc1Desc"></p></div>
                                 <div class="interactive-card bg-white/5 p-8 rounded-lg shadow-lg"><h4 class="text-2xl text-white font-bold mb-3" data-key="hotelSvc2Title"></h4><p class="text-green-200" data-key="hotelSvc2Desc"></p></div>
                                 <div class="interactive-card bg-white/5 p-8 rounded-lg shadow-lg"><h4 class="text-2xl text-white font-bold mb-3" data-key="hotelSvc3Title"></h4><p class="text-green-200" data-key="hotelSvc3Desc"></p></div>
                                 <div class="interactive-card bg-white/5 p-8 rounded-lg shadow-lg"><h4 class="text-2xl text-white font-bold mb-3" data-key="hotelSvc4Title"></h4><p class="text-green-200" data-key="hotelSvc4Desc"></p></div>
+                                <div class="interactive-card bg-white/5 p-8 rounded-lg shadow-lg"><h4 class="text-2xl text-white font-bold mb-3" data-key="hotelSvc5Title"></h4><p class="text-green-200" data-key="hotelSvc5Desc"></p></div>
+                                <div class="interactive-card bg-white/5 p-8 rounded-lg shadow-lg"><h4 class="text-2xl text-white font-bold mb-3" data-key="hotelSvc6Title"></h4><p class="text-green-200" data-key="hotelSvc6Desc"></p></div>
                             </div>
                         </div>
 
@@ -488,11 +598,27 @@
                         tourismTitle: "Tourism Consultancy", tourismDesc: "We craft unique destination brands and sustainable travel experiences by combining in-depth market research with strategic planning and digital marketing.",
                         gastronomyTitle: "Gastronomy Consultancy", gastronomyDesc: "From concept development and menu engineering to kitchen design and digital transformation, we provide end-to-end support to launch and elevate your restaurant.",
                         learnMore: "Learn More",
-                        aboutSnippetTitle: "A Modern Vision for Hospitality", aboutSnippetDesc: "Founded by Flavius Cheveresan, Bruck Advisors is built on a unique foundation of academic insight and elite practical experience. With a BSc in Business Administration from LMU and an ongoing MSc in Culinary Innovation Management from Birkbeck & Le Cordon Bleu London, Flavius combines cutting-edge theory with the hands-on excellence gained as part of the opening team for The Koenigshof, a Luxury Collection hotel by Marriott.",
-                        readOurStory: "Read Our Full Story",
+                        
+                        valuePropTitle: "Our Value Proposition",
+                        valuePropHeadline: "I help ambitious business owners achieve scalable growth by applying insights from the world's leading industries.",
+                        valuePropHowTitle: "The 'How'",
+                        valuePropHowDesc: `"At 23, I bring a perspective that other consultants can't offer. I've packed a decade of experience into a few short years, from graduating with distinction in business innovation and culinary management from London to helping launch a luxury Marriott hotel. I don't rely on old playbooks. I build new ones, combining cutting-edge strategy with a deep, practical understanding of what makes a service business truly exceptional."`,
+                        valuePropBenefitsTitle: "What This Means For Your Business (The Benefits):",
+                        valuePropBenefit1Title: "An Unfair Advantage",
+                        valuePropBenefit1Desc: "Leverage modern, tech-forward strategies that your competitors haven't even thought of yet.",
+                        valuePropBenefit2Title: "From Theory to Action",
+                        valuePropBenefit2Desc: "Get solutions that aren't just from a textbook; they are forged and proven in some of the most demanding industries in the world.",
+                        valuePropBenefit3Title: "An Energetic Partnership",
+                        valuePropBenefit3Desc: "Work with a motivated, dedicated consultant who is personally invested in the success and future expansion of your business.",
+
                         aboutTitle: "From Global Kitchens to Romanian Roots", aboutSubtitle: "Bruck Advisors is the culmination of a journey fueled by passion, defined by world-class education, and proven by elite industry experience. It's a mission to bring a new standard of excellence to the heart of Romanian hospitality.",
-                        founderJourneyTitle: "Our Founder's Journey", founderJourneyDesc: `<p>The story of Bruck Advisors begins with its founder, Flavius Cheveresan, and a pivotal moment of discovery. After a period of exploration, he found his true calling in the dynamic worlds of gastronomy and hospitality, igniting a passion that would set the course for his career.</p><p>This newfound dedication led him to London, where he honed his foundational skills with a professional course at the prestigious <span class="text-white font-semibold">Leiths School of Food and Wine</span>. Building on this practical base, he pursued rigorous academic training, earning a BSc in Business Administration from LMU and a highly specialized MSc in Culinary Innovation Management—a unique program offered by Birkbeck in partnership with <span class="text-white font-semibold">Le Cordon Bleu London</span>.</p><p>This powerful combination of business acumen and culinary artistry was put to the test when Flavius joined the opening team for <span class="text-white font-semibold">The Koenigshof</span>, a Marriott Luxury Collection hotel in Munich. This experience provided invaluable, real-world insight into the standards, precision, and dedication required to launch and operate at the pinnacle of the luxury hospitality market.</p>`,
-                        visionTitle: "Our Vision for Romania", visionDesc: "Growing up in Romania, Flavius developed a deep appreciation for its rich culture. Bruck Advisors was born from a desire to merge this heritage with his global expertise. Our mission is to empower the Romanian gastronomy and hospitality sectors, implementing world-class knowledge to elevate and celebrate the authentic character of our local businesses. We don't just advise; we partner with you to build lasting success.",
+                        
+                        timeline1Title: "The Spark", timeline1Desc: "The story begins with a pivotal moment of discovery. After a period of exploration, our founder, Flavius Cheveresan, found his true calling in the dynamic worlds of gastronomy and hospitality, igniting a passion that would set his career course.",
+                        timeline2Title: "The Foundation", timeline2Desc: "This newfound dedication led to London, honing foundational skills with a professional course at the prestigious Leiths School of Food and Wine.",
+                        timeline3Title: "The Strategy", timeline3Desc: "Building on this practical base, he pursued rigorous academic training, earning a BSc in Business Administration from LMU and a specialized MSc in Culinary Innovation Management from Birkbeck & Le Cordon Bleu London.",
+                        timeline4Title: "The Proving Ground", timeline4Desc: "This powerful combination of business acumen and culinary artistry was put to the test on the opening team for The Koenigshof, a Marriott Luxury Collection hotel in Munich, providing invaluable, real-world insight into the pinnacle of luxury hospitality.",
+                        timeline5Title: "The Vision", timeline5Desc: "Bruck Advisors was born from a desire to merge this global expertise with a deep appreciation for Romanian heritage. Our mission is to empower the local hospitality sector, implementing world-class knowledge to elevate and celebrate the authentic character of our businesses.",
+
                         ctaTitle: "Let's Build the Future of Hospitality Together", ctaSubtitle: "Ready to bring a new level of excellence to your project?", ctaButton: "Get in Touch",
                         servicesTitle: "Our Services", servicesSubtitle: "A detailed look at how we can elevate your business.",
                         testimonialsTitle: "What Our Clients Say", testimonialsSubtitle: "Discover how we've helped businesses like yours succeed.",
@@ -518,6 +644,8 @@
                         hotelSvc2Title: "Pre-Opening HR & Training", hotelSvc2Desc: "Assistance with recruiting key staff and coordinating specialized training programs for all departments.",
                         hotelSvc3Title: "Service & Amenity Design", hotelSvc3Desc: "Collaboration with experts to develop unique room amenities, signature F&B offerings, and memorable guest experiences.",
                         hotelSvc4Title: "CFO Services", hotelSvc4Desc: "Strategic financial oversight for hotels, including budgeting, forecasting, performance analysis using key metrics like RevPAR & GOPPAR, and profitability improvement.",
+                        hotelSvc5Title: "Revenue Management & Pricing", hotelSvc5Desc: "We implement dynamic pricing strategies and optimize your distribution channels to maximize RevPAR (Revenue Per Available Room), increase occupancy, and drive direct bookings.",
+                        hotelSvc6Title: "F&B Concept & Profitability", hotelSvc6Desc: "We transform your hotel's restaurants and bars into profitable destinations by developing unique concepts, engineering menus for high margins, and optimizing kitchen and service operations.",
 
                         servicesTourismTitle: "Tourism",
                         tourismSvc1Title: "Experience Design", tourismSvc1Desc: "Creating unique travel products and experiences for diverse groups, from eco-tourists to luxury travelers.",
@@ -554,11 +682,27 @@
                         tourismTitle: "Consultanță Turism", tourismDesc: "Creăm branduri de destinație unice și experiențe de călătorie durabile, combinând cercetarea de piață aprofundată cu planificarea strategică și marketingul digital.",
                         gastronomyTitle: "Consultanță Gastronomie", gastronomyDesc: "De la dezvoltarea conceptului și ingineria meniului la designul bucătăriei și transformarea digitală, oferim suport complet pentru a lansa și a eleva restaurantul dumneavoastră.",
                         learnMore: "Află mai mult",
-                        aboutSnippetTitle: "O Viziune Modernă pentru Ospitalitate", aboutSnippetDesc: "Fondată de Flavius Cheveresan, Bruck Advisors se bazează pe o fundație unică de perspectivă academică și experiență practică de elită. Cu o licență în Administrarea Afacerilor de la LMU și un master în Managementul Inovației Culinare în curs de desfășurare la Birkbeck & Le Cordon Bleu Londra, Flavius combină teoria de avangardă cu excelența practică dobândită ca parte a echipei de deschidere pentru The Koenigshof, un hotel Luxury Collection by Marriott.",
-                        readOurStory: "Citește Povestea Noastră",
+
+                        valuePropTitle: "Propunerea Noastră de Valoare",
+                        valuePropHeadline: "Ajut antreprenorii ambițioși să obțină o creștere scalabilă prin aplicarea perspectivelor din cele mai importante industrii din lume.",
+                        valuePropHowTitle: "Metoda",
+                        valuePropHowDesc: `"La 23 de ani, aduc o perspectivă pe care alți consultanți nu o pot oferi. Am acumulat un deceniu de experiență în câțiva ani scurți, de la absolvirea cu distincție în inovație de afaceri și management culinar la Londra, până la contribuția la lansarea unui hotel de lux Marriott. Nu mă bazez pe strategii vechi. Construiesc altele noi, combinând strategii de avangardă cu o înțelegere profundă și practică a ceea ce face o afacere de servicii cu adevărat excepțională."`,
+                        valuePropBenefitsTitle: "Ce înseamnă acest lucru pentru afacerea dvs. (Beneficiile):",
+                        valuePropBenefit1Title: "Un Avantaj Competitiv",
+                        valuePropBenefit1Desc: "Utilizați strategii moderne, orientate spre tehnologie, la care concurenții dvs. nici măcar nu s-au gândit încă.",
+                        valuePropBenefit2Title: "De la Teorie la Acțiune",
+                        valuePropBenefit2Desc: "Obțineți soluții care nu provin doar dintr-un manual; ele sunt create și dovedite în unele dintre cele mai exigente industrii din lume.",
+                        valuePropBenefit3Title: "Un Parteneriat Energetic",
+                        valuePropBenefit3Desc: "Lucrați cu un consultant motivat și dedicat, care este investit personal în succesul și extinderea viitoare a afacerii dvs.",
+
                         aboutTitle: "De la Bucătării Globale la Rădăcini Românești", aboutSubtitle: "Bruck Advisors este punctul culminant al unei călătorii alimentate de pasiune, definite de educație de clasă mondială și dovedite prin experiență de elită în industrie. Este o misiune de a aduce un nou standard de excelență în inima ospitalității românești.",
-                        founderJourneyTitle: "Călătoria Fondatorului Nostru", founderJourneyDesc: `<p>Povestea Bruck Advisors începe cu fondatorul său, Flavius Cheveresan, și un moment pivotal de descoperire. După o perioadă de explorare, și-a găsit adevărata chemare în lumile dinamice ale gastronomiei și ospitalității, aprinzând o pasiune care avea să definească parcursul carierei sale.</p><p>Această nouă dedicare l-a condus la Londra, unde și-a perfecționat abilitățile fundamentale cu un curs profesional la prestigioasa <span class="text-white font-semibold">Leiths School of Food and Wine</span>. Bazându-se pe această fundație practică, a urmat o pregătire academică riguroasă, obținând o licență în Administrarea Afacerilor de la LMU și un master specializat în Managementul Inovației Culinare—un program unic oferit de Birkbeck în parteneriat cu <span class="text-white font-semibold">Le Cordon Bleu Londra</span>.</p><p>Această combinație puternică de perspicacitate în afaceri și artă culinară a fost pusă la încercare atunci când Flavius s-a alăturat echipei de deschidere a hotelului <span class="text-white font-semibold">The Koenigshof</span>, un hotel Marriott Luxury Collection din München. Această experiență i-a oferit o perspectivă neprețuită asupra standardelor, preciziei și dedicării necesare pentru a lansa și a opera la apogeul pieței de ospitalitate de lux.</p>`,
-                        visionTitle: "Viziunea Noastră pentru România", visionDesc: "Crescând în România, Flavius a dezvoltat o apreciere profundă pentru cultura sa bogată. Bruck Advisors s-a născut din dorința de a îmbina această moștenire cu expertiza sa globală. Misiunea noastră este de a împuternici sectoarele gastronomice și hoteliere din România, implementând cunoștințe de talie mondială pentru a eleva și celebra caracterul autentic al afacerilor noastre locale. Nu doar consiliem; suntem partenerii dumneavoastră în construirea unui succes de durată.",
+                        
+                        timeline1Title: "Începutul", timeline1Desc: "Povestea începe cu un moment pivotal de descoperire. După o perioadă de explorare, fondatorul nostru, Flavius Cheveresan, și-a găsit adevărata chemare în lumile dinamice ale gastronomiei și ospitalității, aprinzând o pasiune care avea să-i definească parcursul carierei.",
+                        timeline2Title: "Fundația", timeline2Desc: "Această nouă dedicare l-a condus la Londra, unde și-a perfecționat abilitățile fundamentale cu un curs profesional la prestigioasa școală Leiths School of Food and Wine.",
+                        timeline3Title: "Strategia", timeline3Desc: "Bazându-se pe această fundație practică, a urmat o pregătire academică riguroasă, obținând o licență în Administrarea Afacerilor de la LMU și un master specializat în Managementul Inovației Culinare de la Birkbeck & Le Cordon Bleu Londra.",
+                        timeline4Title: "Momentul Decisiv", timeline4Desc: "Această combinație puternică de perspicacitate în afaceri și artă culinară a fost pusă la încercare în echipa de deschidere a The Koenigshof, un hotel Marriott Luxury Collection din München, oferind o perspectivă neprețuită asupra apogeului ospitalității de lux.",
+                        timeline5Title: "Viziunea", timeline5Desc: "Bruck Advisors s-a născut din dorința de a îmbina această expertiză globală cu o apreciere profundă pentru moștenirea românească. Misiunea noastră este de a împuternici sectorul ospitalității locale, implementând cunoștințe de talie mondială pentru a eleva și a celebra caracterul autentic al afacerilor noastre.",
+
                         ctaTitle: "Să Construim Împreună Viitorul Ospitalității", ctaSubtitle: "Sunteți gata să aduceți un nou nivel de excelență proiectului dumneavoastră?", ctaButton: "Luați legătura",
                         servicesTitle: "Serviciile Noastre", servicesSubtitle: "O privire detaliată asupra modului în care vă putem eleva afacerea.",
                         testimonialsTitle: "Ce Spun Clienții Noștri", testimonialsSubtitle: "Descoperiți cum am ajutat afaceri ca a dumneavoastră să aibă succes.",
@@ -584,6 +728,8 @@
                         hotelSvc2Title: "HR Pre-deschidere & Instruire", hotelSvc2Desc: "Asistență în recrutarea personalului cheie și coordonarea programelor de instruire specializată pentru toate departamentele.",
                         hotelSvc3Title: "Design Servicii & Facilități", hotelSvc3Desc: "Colaborare cu experți pentru a dezvolta facilități unice în cameră, oferte F&B de semnătură și experiențe memorabile pentru oaspeți.",
                         hotelSvc4Title: "Servicii CFO", hotelSvc4Desc: "Supraveghere financiară strategică pentru hoteluri, incluzând bugetare, prognoză, analiză a performanței folosind indicatori cheie precum RevPAR & GOPPAR și îmbunătățirea profitabilității.",
+                        hotelSvc5Title: "Managementul Veniturilor & Prețuri", hotelSvc5Desc: "Implementăm strategii de prețuri dinamice și optimizăm canalele de distribuție pentru a maximiza RevPAR (Venitul pe Cameră Disponibilă), a crește gradul de ocupare și a stimula rezervările directe.",
+                        hotelSvc6Title: "Concept F&B & Profitabilitate", hotelSvc6Desc: "Transformăm restaurantele și barurile hotelului dvs. în destinații profitabile prin dezvoltarea de concepte unice, crearea de meniuri cu marje ridicate și optimizarea operațiunilor din bucătărie și servire.",
 
                         servicesTourismTitle: "Turism",
                         tourismSvc1Title: "Design de Experiențe", tourismSvc1Desc: "Crearea de produse și experiențe turistice unice pentru diverse grupuri, de la eco-turiști la călători de lux.",
@@ -599,7 +745,7 @@
                         digitalSvc3Title: "Digitalizare Operațională", digitalSvc3Desc: "Consultanță pentru implementarea platformelor de rezervări online, a instrumentelor de interacțiune cu oaspeții și a altor soluții digitale pentru a spori vizibilitatea și a eficientiza operațiunile.",
 
                         privacyContent: `<h1>Politică de Confidențialitate</h1><p><strong>Ultima actualizare: 7 Iulie 2025</strong></p><h3>1. Operatorul de date</h3><p><strong>Numele companiei:</strong> Bruck Advisors SRL-D<br><strong>Sediul social:</strong> Intrarea Doinei 19, 300086 Timișoara, Timiș, România</p><h3>2. Obiectul și scopul prelucrării datelor cu caracter personal</h3><p>Această politică explică ce date colectăm, de ce și cum le folosim, precum și drepturile dumneavoastră ca persoană vizată. Bruck Advisors SRL-D colectează date cu caracter personal în următoarele scopuri:</p><ul><li>Pentru a răspunde solicitărilor primite de la persoanele vizate prin completarea formularului de contact de pe site-ul nostru.</li><li>Trimiterea de newslettere și oferte personalizate (acolo unde există consimțământ).</li><li>Analiza statistică a traficului web pentru a ne îmbunătăți serviciile.</li><li>Pentru activități de marketing și parteneriate editoriale pe orice blog găsit pe site-ul nostru.</li></ul><h3>3. Datele pe care le colectăm și temeiul juridic al prelucrării</h3><p>În cadrul activităților noastre, colectăm și prelucrăm date cu caracter personal în conformitate cu Regulamentul (UE) 2016/679 (GDPR). Categoriile de date colectate includ:</p><ul><li><strong>Informații de contact:</strong> Cum ar fi numele, prenumele, adresa de e-mail, numărul de telefon și mesajele trimise, utilizate pentru a răspunde la întrebări și, după caz, pentru comunicări de marketing. Prelucrarea se bazează pe consimțământ, iar datele sunt stocate până la retragerea acestuia.</li><li><strong>Date de navigare:</strong> Inclusiv adresa IP, cookie-uri și paginile vizitate, colectate în scopul analizei traficului și îmbunătățirii experienței utilizatorului. Acestea sunt prelucrate pe baza interesului legitim și stocate pentru o perioadă de 2 ani.</li><li><strong>Informații de facturare:</strong> Cum ar fi adresa, CUI-ul și detaliile de plată, necesare pentru emiterea facturilor și respectarea obligațiilor legale. Aceste date sunt prelucrate pentru executarea contractului și stocate pentru o perioadă de 10 ani, conform legislației în vigoare (de ex., Legea contabilității nr. 82/1991, art. 25).</li></ul><h3>4. Cookie-uri și tehnologii similare</h3><p>Site-ul utilizează cookie-uri pentru funcționarea esențială, analiza traficului (de ex., Google Analytics) și marketing. Pentru mai multe detalii, vă rugăm să consultați Politica noastră privind Cookie-urile. Ne rezervăm dreptul de a modifica scopurile pentru care folosim cookie-urile.</p><h3>5. Destinatarii datelor</h3><p>Datele cu caracter personal colectate de Bruck Advisors SRL-D pot fi transmise către:</p><ul><li>Furnizorul nostru de găzduire web și furnizorii de servicii backend (de ex., Formspree pentru formularele de contact).</li><li>Furnizori de analiză precum Google.</li><li>Procesatori de plăți și facturare pentru orice servicii prestate.</li><li>Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP), la solicitarea oficială a acesteia.</li></ul><p>Toți procesatorii care obțin aceste date sunt obligați contractual să asigure confidențialitatea și securitatea datelor.</p><h3>6. Transferuri internaționale</h3><p>În prezent, nu transferăm date în afara Spațiului Economic European (SEE). Dacă vom face acest lucru, ne vom asigura că se realizează în conformitate cu GDPR, folosind decizii de adecvare sau Clauzele Contractuale Standard ale Comisiei Europene.</p><h3>7. Măsuri de securitate</h3><p>Implementăm măsuri tehnice și organizatorice în conformitate cu Legea 190/2018, inclusiv criptare SSL pentru trafic, autentificare cu mai mulți factori pentru administratori, backup-uri zilnice criptate și teste periodice de securitate.</p><h3>8. Date sensibile</h3><p>Nu colectăm date "sensibile" așa cum sunt definite de GDPR (de ex., sănătate, date biometrice).</p><h3>9. Responsabilul cu protecția datelor (DPO)</h3><p><strong>Nume:</strong> Flavius Justin Cheveresan</p><p><strong>Email:</strong> <a href="mailto:customer@bruckadvisors.com">customer@bruckadvisors.com</a></p><h3>10. Drepturile persoanelor vizate</h3><p>Puteți solicita accesul la, rectificarea, ștergerea sau restricționarea datelor dumneavoastră cu caracter personal. De asemenea, puteți solicita portabilitatea datelor, vă puteți opune prelucrării sau puteți retrage consimțământul. Pentru a exercita aceste drepturi, vă rugăm să contactați DPO-ul nostru.</p><h3>11. Modificări ale politicii</h3><p>Actualizările acestei politici vor fi comunicate pe site cu cel puțin 15 zile înainte de a fi aplicate.</p>`,
-                        cookiesContent: `<h1>Politică privind Cookie-urile</h1><p><strong>Ultima actualizare: 7 Iulie 2025</strong></p><p>Această politică explică modul în care Bruck Advisors SRL-D ("noi", "nouă", "noastre") utilizează cookie-uri și tehnologii similare pe site-ul nostru, bruckadvisors.com ("Site-ul").</p><h3>1. Ce sunt cookie-urile?</h3><p>Cookie-urile sunt fișiere text mici care sunt stocate pe dispozitivul dumneavoastră (computer, tabletă, telefon mobil) atunci când vizitați un site web. Acestea sunt utilizate pe scară largă pentru a face site-urile web să funcționeze sau să funcționeze mai eficient, precum și pentru a furniza informații proprietarilor site-ului. Cookie-urile ne ajută să vă optimizăm experiența de navigare și să analizăm traficul pe site.</p><h3>2. Cum folosim cookie-urile</h3><p>Când vizitați Site-ul nostru, vi se va cere consimțământul pentru a utiliza cookie-uri neesențiale printr-un banner de cookie-uri. Puteți personaliza preferințele în orice moment. Folosim următoarele categorii de cookie-uri:</p><ul><li><strong>Cookie-uri Strict Necesare:</strong> Aceste cookie-uri sunt esențiale pentru funcționarea corectă a Site-ului și nu pot fi dezactivate în sistemele noastre. De obicei, sunt setate doar ca răspuns la acțiunile efectuate de dumneavoastră, cum ar fi setarea preferințelor de confidențialitate, completarea formularelor, asigurarea securității împotriva spam-ului sau încărcarea rapidă a paginilor.</li><li><strong>Cookie-uri de Performanță (Analitice):</strong> Aceste cookie-uri ne permit să numărăm vizitele și sursele de trafic, astfel încât să putem măsura și îmbunătăți performanța Site-ului nostru. Ne ajută să înțelegem care pagini sunt cele mai populare și cele mai puțin populare și să vedem cum se deplasează vizitatorii pe site. Toate informațiile pe care le colectează aceste cookie-uri sunt agregate și, prin urmare, anonime. În acest scop, folosim servicii precum Google Analytics.</li><li><strong>Cookie-uri de Funcționalitate:</strong> Aceste cookie-uri permit site-ului să ofere funcționalități îmbunătățite și personalizare. Ele pot fi setate de noi sau de furnizori terți ale căror servicii le-am adăugat pe paginile noastre. De exemplu, aceste cookie-uri pot reține limba preferată sau regiunea geografică.</li><li><strong>Cookie-uri de Marketing (Opțional):</strong> Aceste cookie-uri pot fi setate prin intermediul site-ului nostru de către partenerii noștri de publicitate, cum ar fi Facebook (Meta) or Google. Acestea pot fi utilizate de aceste companii pentru a construi un profil al intereselor dumneavoastră și pentru a vă afișa reclame relevante pe alte site-uri. Nu stochează direct informații personale, ci se bazează pe identificarea unică a browserului și a dispozitivului dumneavoastră de internet. Trebuie să consimțiți în mod explicit la utilizarea lor.</li></ul><h3>3. Cum să controlați cookie-urile</h3><p>Aveți control deplin asupra preferințelor dumneavoastră privind cookie-urile. Vă puteți răzgândi și actualiza preferințele în orice moment, făcând clic pe un link "Setări Cookie-uri" sau similar, care este disponibil în subsolul site-ului nostru. De asemenea, puteți controla și/sau șterge cookie-urile după cum doriți prin setările browserului dumneavoastră. Rețineți că dezactivarea cookie-urilor strict necesare poate afecta funcționalitatea site-ului nostru.</p><h3>4. Cookie-uri de la terți</h3><p>Unele pagini de pe Site-ul nostru pot include conținut încorporat de la furnizori terți (de ex., videoclipuri YouTube, hărți Google). Acești terți pot seta propriile cookie-uri și au propriile politici de confidențialitate și cookie-uri, asupra cărora nu avem niciun control. Vă recomandăm să le consultați politicile pentru mai multe informații.</p><h3>5. Actualizări ale acestei politici</h3><p>Putem actualiza această politică din când în când pentru a reflecta modificările practicilor noastre sau din alte motive operaționale, legale sau de reglementare. Versiunea actualizată va fi publicată pe această pagină, iar data "Ultima actualizare" va fi revizuită.</p><h3>6. Contact și Operatorul de Date</h3><p>Operatorul de date pentru site-ul bruckadvisors.com este:<br><strong>Bruck Advisors SRL-D</strong><br>Nr. de înregistrare: 51183905<br>Adresa: Intrarea Doinei 19, 300086 Timișoara, Timiș, România</p><p>Pentru orice întrebări referitoare la această Politică privind Cookie-urile, vă rugăm să ne contactați la <a href="mailto:customer@bruckadvisors.com">customer@bruckadvisors.com</a> sau prin formularul de contact de pe site-ul nostru.</p>`,
+                        cookiesContent: `<h1>Politică privind Cookie-urile</h1><p><strong>Ultima actualizare: 7 Iulie 2025</strong></p><p>Această politică explică modul în care Bruck Advisors SRL-D ("noi", "nouă", "noastre") utilizează cookie-uri și tehnologii similare pe site-ul nostru, bruckadvisors.com ("Site-ul").</p><h3>1. Ce sunt cookie-urile?</h3><p>Cookie-urile sunt fișiere text mici care sunt stocate pe dispozitivul dumneavoastră (computer, tabletă, telefon mobil) atunci când vizitați un site web. Acestea sunt utilizate pe scară largă pentru a face site-urile web să funcționeze sau să funcționeze mai eficient, precum și pentru a furniza informații proprietarilor site-ului. Cookie-urile ne ajută să vă optimizăm experiența de navigare și să analizăm traficul pe site.</p><h3>2. Cum folosim cookie-urile</h3><p>Când vizitați Site-ul nostru, vi se va cere consimțământul pentru a utiliza cookie-uri neesențiale printr-un banner de cookie-uri. Puteți personaliza preferințele în orice moment. Folosim următoarele categorii de cookie-uri:</p><ul><li><strong>Cookie-uri Strict Necesare:</strong> Aceste cookie-uri sunt esențiale pentru funcționarea corectă a Site-ului și nu pot fi dezactivate în sistemele noastre. De obicei, sunt setate doar ca răspuns la acțiunile efectuate de dumneavoastră, cum ar fi setarea preferințelor de confidențialitate, completarea formularelor, asigurarea securității împotriva spam-ului sau încărcarea rapidă a paginilor.</li><li><strong>Cookie-uri de Performanță (Analitice):</strong> Aceste cookie-uri ne permit să numărăm vizitele și sursele de trafic, astfel încât să putem măsura și îmbunătăți performanța Site-ului nostru. Ne ajută să înțelegem care pagini sunt cele mai populare și cele mai puțin populare și să vedem cum se deplasează vizitatorii pe site. Toate informațiile pe care le colectează aceste cookie-uri sunt agregate și, prin urmare, anonime. În acest scop, folosim servicii precum Google Analytics.</li><li><strong>Cookie-uri de Funcționalitate:</strong> Aceste cookie-uri permit site-ului să ofere funcționalități îmbunătățite și personalizare. Ele pot fi setate de noi sau de furnizori terți ale căror servicii le-am adăugat pe paginile noastre. De exemplu, aceste cookie-uri pot reține limba preferată sau regiunea geografică.</li><li><strong>Cookie-uri de Marketing (Opțional):</strong> Aceste cookie-uri pot fi setate prin intermediul site-ului nostru de către partenerii noștri de publicitate, cum ar fi Facebook (Meta) or Google. Acestea pot fi utilizate de aceste companii pentru a construi un profil al intereselor dumneavoastră și pentru a vă afișa reclame relevante pe alte site-uri. Nu stochează direct informații personale, ci se bazează pe identificarea unică a browserului și a dispozitivului dumneavoastră de internet. Trebuie să consimțiți în mod explicit la utilizarea lor.</li></ul><h3>3. Cum să controlați cookie-urile</h3><p>Aveți control deplin asupra preferințelor dumneavoastră privind cookie-urile. Vă puteți răzgândi și actualiza preferințele în orice moment, făcând clic pe un link "Setări Cookie-uri" sau similar, care este disponibil în subsolul site-ului nostru. De asemenea, puteți controla și/sau șterge cookie-urile după cum doriți prin setările browserului dumneavoastră. Rețineți că dezactivarea cookie-urilor strict necesare poate afecta funcționalitatea site-ului nostru.</p><h3>4. Cookie-uri de la terți</h3><p>Some pages on our Site may include embedded content from third-party providers (e.g., YouTube videos, Google Maps). These third parties may set their own cookies and have their own privacy and cookie policies, over which we have no control. We recommend you review their policies for more information.</p><h3>5. Updates to This Policy</h3><p>We may update this policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. The updated version will be published on this page, and the "Last Updated" date will be revised.</p><h3>6. Contact și Operatorul de Date</h3><p>Operatorul de date pentru site-ul bruckadvisors.com este:<br><strong>Bruck Advisors SRL-D</strong><br>Nr. de înregistrare: 51183905<br>Adresa: Intrarea Doinei 19, 300086 Timișoara, Timiș, România</p><p>Pentru orice întrebări referitoare la această Politică privind Cookie-urile, vă rugăm să ne contactați la <a href="mailto:customer@bruckadvisors.com">customer@bruckadvisors.com</a> sau prin formularul de contact de pe site-ul nostru.</p>`,
                         termsContent: `<h1>Termeni și Condiții</h1><p><strong>Ultima actualizare: 7 Iulie 2025</strong></p><h3>Ce acoperă acești termeni?</h3><p>Acești Termeni și Condiții guvernează utilizarea de către dumneavoastră a site-ului web bruckadvisors.com. Prin accesarea și navigarea pe acest site, sunteți de acord să respectați termenii descriși mai jos. Dacă nu sunteți de acord cu acești termeni, vă rugăm să încetați imediat utilizarea site-ului.</p><h3>1. INFORMAȚII GENERALE</h3><p>Site-ul web bruckadvisors.com oferă conținut informativ despre serviciile de consultanță în gastronomie, ospitalitate și turism. Deși ne străduim să ne asigurăm că toate informațiile sunt corecte și actualizate, nu oferim nicio garanție cu privire la completitudinea, acuratețea sau fiabilitatea acestora.</p><h3>2. DREPTURI ASUPRA CONȚINUTULUI</h3><p>Tot conținutul de pe acest site este proprietatea Bruck Advisors SRL-D și este protejat de legea drepturilor de autor. Copierea, modificarea, distribuirea, publicarea sau utilizarea oricărui conținut în scopuri comerciale este strict interzisă fără consimțământul prealabil scris al companiei. Aveți permisiunea de a vizualiza și de a imprima pagini de pe site numai pentru uz personal, necomercial.</p><h3>3. LIMITAREA RĂSPUNDERII</h3><p>Bruck Advisors SRL-D nu va fi trasă la răspundere pentru nicio eroare sau omisiune din conținutul acestui site web, nicio indisponibilitate temporară sau întrerupere tehnică a site-ului, sau orice daune directe sau indirecte rezultate din utilizarea site-ului sau din încrederea în conținutul său. Toate informațiile de pe site, inclusiv descrierile serviciilor, prețurile și disponibilitatea, sunt furnizate numai în scop informativ și nu constituie o ofertă obligatorie.</p><h3>4. PROTECȚIA DATELOR CU CARACTER PERSONAL (GDPR)</h3><p>Bruck Advisors SRL-D respectă cerințele Regulamentului UE 2016/679 (Regulamentul General privind Protecția Datelor - GDPR). Colectăm date cu caracter personal numai cu consimțământul dumneavoastră și exclusiv în următoarele scopuri: răspunsul la solicitările de servicii, trimiterea de actualizări sau informații despre serviciile noastre și îmbunătățirea experienței dumneavoastră pe site. Aveți dreptul de a accesa, rectifica, șterge sau de a vă opune prelucrării datelor dumneavoastră, precum și de a depune o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (www.dataprotection.ro). Pentru a exercita oricare dintre aceste drepturi, vă rugăm să ne contactați prin intermediul formularului de pe pagina de Contact.</p><h3>5. COOKIE-URI ȘI LINK-URI EXTERNE</h3><p>Acest site web poate utiliza cookie-uri pentru a îmbunătăți funcționalitatea și experiența dumneavoastră de utilizare. Prin continuarea navigării pe site, sunteți de acord cu utilizarea cookie-urilor. Bruck Advisors SRL-D nu este responsabil pentru conținutul, disponibilitatea sau securitatea site-urilor web ale terților la care se face trimitere pe acest site.</p><h3>6. MODIFICĂRI</h3><p>Ne rezervăm dreptul de a actualiza sau modifica acești Termeni și Condiții în orice moment. Orice modificare va fi publicată pe această pagină și va intra în vigoare la momentul postării.</p><h3>7. CONTACT</h3><p>Dacă aveți întrebări, sugestii sau solicitări legate de acești Termeni sau de prelucrarea datelor dumneavoastră cu caracter personal, vă rugăm să ne contactați prin intermediul formularului de pe site-ul nostru.</p>`,
                         cookieBannerText: "Folosim cookie-uri pentru a vă îmbunătăți experiența de navigare și pentru a analiza traficul nostru. Făcând clic pe 'Accept Toate', sunteți de acord cu utilizarea cookie-urilor noastre.",
                         cookieAcceptAll: "Accept Toate",
@@ -631,6 +777,8 @@
                     this.pageSections = document.querySelectorAll('.page-section');
                     this.animatedSections = document.querySelectorAll('.fade-in-section');
                     this.langSwitchers = document.querySelectorAll('.lang-switcher');
+                    this.founderJourneyToggle = document.getElementById('founder-journey-toggle');
+                    this.founderJourneyRest = document.getElementById('founder-journey-rest');
                     // Cookie Banner Elements
                     this.cookieBanner = document.getElementById('cookie-banner');
                     this.cookieAcceptAllBtn = document.getElementById('cookie-accept-all');
@@ -672,6 +820,14 @@
                             }
                         });
                     });
+                    
+                    if (this.founderJourneyToggle) {
+                        this.founderJourneyToggle.addEventListener('click', () => {
+                            this.founderJourneyRest.classList.toggle('visible');
+                            this.updateFounderButtonText();
+                        });
+                    }
+
 
                     // Cookie Banner Events
                     this.cookieAcceptAllBtn.addEventListener('click', () => this.handleCookieConsent({ all: true }));
@@ -732,6 +888,13 @@
                     this.showPage(pageId, anchorId);
                 },
 
+                updateFounderButtonText() {
+                    const isVisible = this.founderJourneyRest.classList.contains('visible');
+                    this.founderJourneyToggle.innerHTML = isVisible
+                        ? this.content[this.currentLang].founderHideDetails
+                        : this.content[this.currentLang].founderLearnMore;
+                },
+
                 switchLanguage(lang, isInitialLoad = false) {
                     if (this.currentLang === lang && !isInitialLoad) return;
 
@@ -752,6 +915,9 @@
                         });
                         
                         this.updateActiveLink(this.currentPage);
+                        if(this.founderJourneyToggle) {
+                           this.updateFounderButtonText();
+                        }
                     };
 
                     if (isInitialLoad) {
