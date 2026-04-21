@@ -32,11 +32,25 @@
     }
     </script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PERFORMANCE OPTIMIZATIONS -->
+    <!-- 1. Preconnect to image domain to save DNS lookup time -->
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="dns-prefetch" href="https://images.pexels.com">
     
+    <!-- 2. Preload the Hero Background Image (Crucial for LCP Score) -->
+    <link rel="preload" as="image" href="https://images.pexels.com/photos/1666014/pexels-photo-1666014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+
+    <!-- 3. Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- 
+      WARNING FOR PRODUCTION: 
+      The Tailwind CDN script below is the primary cause of the 2.9s FCP delay.
+      For production, remove this script and link a compiled CSS file instead.
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMBKQTRDZV"></script>
@@ -125,7 +139,6 @@
                 
                 <div class="hidden lg:flex items-center space-x-8">
                     <div class="main-nav space-x-8">
-                        <!-- Default English text hardcoded for optimal SEO parsing -->
                         <a href="#home" data-page="home" class="nav-link text-white nav-text hover:text-blue-500 font-medium transition-colors" data-key="navHome">Home</a>
                         <a href="#about" data-page="about" class="nav-link text-white nav-text hover:text-blue-500 font-medium transition-colors" data-key="navAbout">About</a>
                         <a href="#services" id="nav-services" data-page="services" class="nav-link text-white nav-text hover:text-blue-500 font-medium transition-colors" data-key="navServices">Services</a>
@@ -158,7 +171,7 @@
                             <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <button id="mobile-menu-button" class="nav-text text-white focus:outline-none">
+                    <button id="mobile-menu-button" class="nav-text text-white focus:outline-none" aria-label="Open Mobile Menu">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
